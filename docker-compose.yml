@@ -1,0 +1,36 @@
+x-mysql-environment: &mysql-environment
+  MYSQL_DATABASE: ${MYSQL_DATABASE}
+  MYSQL_DOCKER_HOST_NAME: ${MYSQL_DOCKER_HOST_NAME}
+  MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  MYSQL_USER: ${MYSQL_USER}
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        <<: *mysql-environment
+    environment:
+      <<: *mysql-environment
+    ports:
+      - "8000:80"
+    volumes:
+      - ./arkhamdb-json-data:/data
+      - ./images:/code/web/bundles/cards
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.2
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      <<: *mysql-environment
+      MYSQL_ROOT_PASSWORD: change_me
+    ports:
+      - "3307:3306"
+    volumes:
+      - app-data:/var/lib/mysql
+
+volumes:
+  app-data:
