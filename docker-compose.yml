@@ -4,6 +4,8 @@ x-mysql-environment: &mysql-environment
   MYSQL_PASSWORD: ${MYSQL_PASSWORD}
   MYSQL_USER: ${MYSQL_USER}
 
+name: arkhamdb
+
 services:
   app:
     build:
@@ -18,9 +20,9 @@ services:
       - ./arkhamdb-json-data:/data
       - ./images:/code/web/bundles/cards
     depends_on:
-      - db
+      - mariadb
 
-  db:
+  mariadb:
     image: mariadb:10.2
     command: --default-authentication-plugin=mysql_native_password
     restart: always
