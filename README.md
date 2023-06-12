@@ -13,7 +13,8 @@
 # clone this repo.
 git clone https://github.com/fspoettel/arkhamdb-docker && cd arkhamdb-docker
 
-# add arkhamdb & arkhamdb-json-data as submodules repositories.
+# pull arkhamdb & arkhamdb-json-data.
+# adjust this command to reference your own data if needed.
 make setup
 
 # start containers.
