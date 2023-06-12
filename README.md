@@ -34,3 +34,14 @@ You can now access the application at `http://localhost:8000`.
 
 The folders `arkhamdb-json-data` and `images` are mounted into the docker container. Thus, changes to images will be visible immediately in the running application.  
 In order to see card changes, run `make import-cards` again.
+
+## Accessing the internal database
+
+```
+host: 127.0.0.1
+port: 3307
+database: symfony
+user: root
+password: root_password
+
+```
