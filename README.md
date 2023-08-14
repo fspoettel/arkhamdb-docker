@@ -4,17 +4,18 @@
 
 # Getting started
 
-> **Note**  
+> **Warning**  
 > This is tailored to previewing the card database and images. This is not a production-ready setup, nor does it currently support developing arkhamdb itself.
 
-```sh
-# install a recent version of `docker` and `git`.
+1. install [docker](https://docs.docker.com/engine/install/) and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
+2. run the following commands in a shell. If your system does not have `make` installed (e.g. windows), copy the referenced commands from the `Makefile` and run them manually instead when approriate.
 
-# clone this repo.
+```sh
+# clone this git repository to a folder and change to it.
 git clone https://github.com/fspoettel/arkhamdb-docker && cd arkhamdb-docker
 
-# pull arkhamdb & arkhamdb-json-data.
-# adjust this command to reference your own data if needed.
+# clone arkhamdb and arkhamdb-json-data repositories.
+# !adjust the make command to reference your own forks if needed.!
 make setup
 
 # start containers.
@@ -29,12 +30,12 @@ make migrate
 make import-cards
 ```
 
-You can now access the application at `http://localhost:8000`.
+✨ You can now access the application at `http://localhost:8000`.
 
 ## Updating cards & images while running
 
-The folders `arkhamdb-json-data` and `images` are mounted into the docker container. Thus, changes to images will be visible immediately in the running application.  
-In order to see card changes, run `make import-cards` again.
+The folders `<repo>/arkhamdb-json-data` and `<repo>/images` are mounted into the running docker container. Thus, changes to images will be visible immediately in the running application (after a browser refresh).  
+In order to see changes to the card data, run `make import-cards` again and then refresh the browser.
 
 ## Accessing the internal database
 
@@ -44,5 +45,12 @@ port: 3307
 database: symfony
 user: root
 password: root_password
-
 ```
+
+## Creating a user login
+
+1. Register via the application user interface.
+2. Connect to the database with a SQL editor (e.g. [TablePlus](https://tableplus.com/)), using the credentials referenced above.
+3. Navigate to the `users` table and find the record pointing to the user you registered.
+4. Set the `enabled` field to `1`.
+5. You can now login.
