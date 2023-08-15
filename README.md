@@ -43,8 +43,8 @@ In order to see changes to the card data, run `make import-cards` again and then
 host: 127.0.0.1
 port: 3307
 database: symfony
-user: root
-password: root_password
+user: symfony_user
+password: symfony_password
 ```
 
 ## Creating a user login
