@@ -34,8 +34,11 @@ make import-cards
 
 ## Updating cards & images while running
 
-The folders `<repo>/arkhamdb-json-data` and `<repo>/images` are mounted into the running docker container. Thus, changes to images will be visible immediately in the running application (after a browser refresh).  
-In order to see changes to the card data, run `make import-cards` again and then refresh the browser.
+The folders `<repo>/arkhamdb-json-data` and `<repo>/images` are mounted into the running docker container.
+
+Changes to files in the images folder will be visible in the "Browse" view immediately.
+
+In order to update card data or images in the deck builder view, run `make import-cards` again after making changes and confirm the new card data version in the application UI.
 
 ## Accessing the internal database
 
