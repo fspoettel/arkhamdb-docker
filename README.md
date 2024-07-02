@@ -57,3 +57,15 @@ password: symfony_password
 3. Navigate to the `users` table and find the record pointing to the user you registered.
 4. Set the `enabled` field to `1`.
 5. You can now login.
+
+## Creating an OAuth app
+
+If you need to develop against ArkhamDB's OAuth gateway, you can create an oauth client by running the following command. By default, this will create a client with `grant_types` set to `["authorization_code", "refresh_token"]`.
+
+```sh
+make redirect_uri="<url>" name="<name>" create-oauth-app
+```
+
+The command will output the `client_id` and `client_secret`, but you can also find it in the database later (table `oauth2_client`).
+
+The oauth login base is `http://localhost:8000/oauth/v2/auth_login`.
