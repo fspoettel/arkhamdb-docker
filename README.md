@@ -66,6 +66,6 @@ If you need to develop against ArkhamDB's OAuth gateway, you can create an oauth
 make redirect_uri="<url>" name="<name>" create-oauth-app
 ```
 
-The command will output the `client_id` and `client_secret`, but you can also find it in the database later (table `oauth2_client`).
+The command will output the `client_id` and `client_secret`.
 
-The oauth login base is `http://localhost:8000/oauth/v2/auth_login`.
+Authorization endpoint: `http://localhost:8000/oauth/v2/auth`
