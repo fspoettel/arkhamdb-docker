@@ -2,7 +2,7 @@ setup:
 	git clone https://github.com/Kamalisk/arkhamdb
 	git clone https://github.com/Kamalisk/arkhamdb-json-data
 
-migrate:
+init-db:
 	docker exec -it arkhamdb-app-1 php bin/console doctrine:schema:create
 
 import-cards:
@@ -10,3 +10,6 @@ import-cards:
 
 create-oauth-app:
 	docker exec -it arkhamdb-app-1 php bin/console app:oauth-server:client:create $(redirect_uri) $(name)
+
+migrate:
+	docker exec -it arkhamdb-app-1 php bin/console doctrine:schema:update --force

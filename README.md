@@ -8,25 +8,24 @@
 > This is tailored to previewing the card database and images. This is not a production-ready setup, nor does it currently support developing arkhamdb itself.
 
 1. install [docker](https://docs.docker.com/engine/install/) and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-2. run the following commands in a shell. If your system does not have `make` installed (e.g. windows), copy the referenced commands from the `Makefile` and run them manually instead when approriate.
+2. run the following commands in a shell. If your system does not have `make` installed (e.g. on Windows), copy the referenced commands from the `Makefile` and run them manually instead when approriate.
 
 ```sh
-# clone this git repository to a folder and change to it.
+# 1. clone this git repository to a folder and change to it.
 git clone https://github.com/fspoettel/arkhamdb-docker && cd arkhamdb-docker
 
-# clone arkhamdb and arkhamdb-json-data repositories.
-# !adjust the make command to reference your own forks if needed.!
+# 2. Clone arkhamdb and arkhamdb-json-data repositories.
+#    If you want to use a fork of the data repository, adjust the command to use your fork.
 make setup
 
-# start containers.
+# 3. Start the containers in one terminal.
 docker compose up
 
-# in a second shell...
+# 4. In a second terminal, initialize the database.
+#    You only need to do this once on first run.
+make init-db
 
-# on first run, migrate the database.
-make migrate
-
-# import cards.
+# 5. Import card data.
 make import-cards
 ```
 
@@ -36,13 +35,14 @@ make import-cards
 
 The folders `<repo>/arkhamdb-json-data` and `<repo>/images` are mounted into the running docker container.
 
-Changes to files in the images folder will be visible in the "Browse" view immediately.
+Changes to files in the images folder will be visible in the _"Browse"_ view immediately.
 
 In order to update card data or images in the deck builder view, run `make import-cards` again after making changes and confirm the new card data version in the application UI.
 
 ## Accessing the internal database
 
 ```
+type: mysql or mariadb
 host: 127.0.0.1
 port: 3307
 database: symfony
