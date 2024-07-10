@@ -21,7 +21,7 @@ parameters:
     
     # Branding
     website_name: ArkhamDb
-    website_url: 127.0.0.1
+    website_url: localhost
     game_name: Arkham Horror LCG
     publisher_name: Fantasy Flight Games
     
